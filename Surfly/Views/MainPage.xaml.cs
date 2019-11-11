@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using Surfly.Models;
 using Surfly.Services;
 using Surfly.Helpers;
+using System.Linq;
 
 namespace Surfly.Views
 {
@@ -20,8 +21,9 @@ namespace Surfly.Views
         async void OnLogoutButtonClicked(object sender, EventArgs e)
         {
             App.IsUserLoggedIn = false;
-            Navigation.InsertPageBefore(new LoginPage(), this);
-            await Navigation.PopAsync();
+            App.Username = null;
+            Navigation.InsertPageBefore(new LoginPage(), Navigation.NavigationStack.First());
+            await Navigation.PopToRootAsync();
         }
 
         async void OnButtonClicked(object sender, EventArgs e)
