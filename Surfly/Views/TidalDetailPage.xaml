@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Surfly.Views.TidalDetailPage">
+    <ContentPage.Content>
+
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Name:" FontSize="Medium" HorizontalOptions="FillAndExpand" />
+                    <Label Text="{Binding myId}" FontSize="Medium" FontAttributes="Bold" />
+                </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Button x:Name="dismissButton" Text="Dismiss" Clicked="OnDismissButtonClicked" />
+                <Button x:Name="saveButton" Text="Save" Clicked="OnSaveButtonClicked" />
+            </StackLayout>
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>
