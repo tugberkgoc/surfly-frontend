@@ -41,7 +41,7 @@ namespace Surfly.Views
         {
             string requestUri = endpoint;
             requestUri += $"?q={cityEntry.Text}";
-            requestUri += "&units=imperial"; // or units=metric
+            requestUri += "&units=metric";
             requestUri += $"&APPID={Constants.OpenWeatherMapAPIKey}";
             return requestUri;
         }

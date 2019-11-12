@@ -28,34 +28,38 @@ namespace Surfly.Views
                 Email = emailEntry.Text
             };
 
-            // Sign up logic goes here
-
             if((!string.IsNullOrWhiteSpace(user.Username) && !string.IsNullOrWhiteSpace(user.Password) && !string.IsNullOrWhiteSpace(user.Email) && user.Email.Contains("@")))
             {
                 messageLabel.Text = "Processing...";
 
-                ResponseData responseData = await _signUpService.SignUpUserAsync("http://192.168.0.108:3030/auth/signup", user);
+                ResponseData responseData = await _signUpService.SignUpUserAsync($"{Constants.BackendAPIEndpoint}/auth/signup", user);
 
-                if (responseData.Status == "success")
+                if (responseData != null)
                 {
-                    var rootPage = Navigation.NavigationStack.FirstOrDefault();
-                    if (rootPage != null)
+                    if (responseData.Status == "success")
                     {
-                        App.IsUserLoggedIn = true;
-                        App.Username = user.Username;
-                        Navigation.InsertPageBefore(new MainTabbedPage(), Navigation.NavigationStack.First());
-                        await Navigation.PopToRootAsync();
+                        var rootPage = Navigation.NavigationStack.FirstOrDefault();
+                        if (rootPage != null)
+                        {
+                            App.IsUserLoggedIn = true;
+                            App.Username = user.Username;
+                            Navigation.InsertPageBefore(new MainTabbedPage(), Navigation.NavigationStack.First());
+                            await Navigation.PopToRootAsync();
+                        }
                     }
-                }
-                else
+                    else
+                    {
+                        messageLabel.Text = "Sign up failed";
+                    }
+                } else
                 {
-                   messageLabel.Text = "Sign up failed";
-                }
+                    messageLabel.Text = "Check Internet Connection!";
+                    passwordEntry.Text = string.Empty;
+                } 
             } else
             {
                 messageLabel.Text = "Please fill the required fields.";
             }
         }
-
     }
 }

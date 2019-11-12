@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using Surfly.Models;
 using Surfly.Services;
+using Surfly.Helpers;
 
 namespace Surfly.Views
 {
@@ -29,23 +30,29 @@ namespace Surfly.Views
                 Password = passwordEntry.Text
             };
 
-
             if ((!string.IsNullOrWhiteSpace(user.Username) && !string.IsNullOrWhiteSpace(user.Password)))
             {
                 messageLabel.Text = "Processing...";
 
-                ResponseData responseData = await _loginService.LoginUserAsync("http://192.168.0.108:3030/auth/login", user);
+                ResponseData responseData = await _loginService.LoginUserAsync($"{Constants.BackendAPIEndpoint}/auth/login", user);
 
-                if (responseData.Status == "success")
+                if (responseData != null)
                 {
-                    App.IsUserLoggedIn = true;
-                    App.Username = user.Username;
-                    Navigation.InsertPageBefore(new MainTabbedPage(), this);
-                    await Navigation.PopAsync();
-                }
-                else
+                    if (responseData.Status == "success")
+                    {
+                        App.IsUserLoggedIn = true;
+                        App.Username = user.Username;
+                        Navigation.InsertPageBefore(new MainTabbedPage(), this);
+                        await Navigation.PopAsync();
+                    }
+                    else
+                    {
+                        messageLabel.Text = "Login failed";
+                        passwordEntry.Text = string.Empty;
+                    }
+                } else
                 {
-                    messageLabel.Text = "Login failed";
+                    messageLabel.Text = "Check Internet Connection!";
                     passwordEntry.Text = string.Empty;
                 }
             }
@@ -53,8 +60,6 @@ namespace Surfly.Views
             {
                 messageLabel.Text = "Please fill the required fields.";
             }
-
         }
-
     }
 }
