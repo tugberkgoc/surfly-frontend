@@ -9,6 +9,7 @@
     <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
     <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -24,26 +25,14 @@
     <Compile Remove="Models\EmptyClass.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Views\LoginPage.xaml.cs">
-      <DependentUpon>LoginPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\SignUpPage.xaml.cs">
-      <DependentUpon>SignUpPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\MainTabbedPage.xaml.cs">
-      <DependentUpon>MainTabbedPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\TidalDetailPage.xaml.cs">
-      <DependentUpon>TidalDetailPage.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Remove="LoginPage.xaml" />
     <EmbeddedResource Remove="LoginPage.xaml" />
     <EmbeddedResource Remove="MainPage.xaml" />
     <EmbeddedResource Remove="SignUpPage.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Xamarin.iOS">
+      <HintPath>..\..\..\..\..\Library\Frameworks\Xamarin.iOS.framework\Versions\13.4.0.2\lib\mono\Xamarin.iOS\Xamarin.iOS.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

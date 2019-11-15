@@ -1,5 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Surfly.Views.TidalDetailPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Surfly.Views.SavedTidalAndWeathersPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Logout" Clicked="OnLogoutButtonClicked" />
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
 
         <RelativeLayout>
@@ -9,6 +14,10 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
+
+                                <ViewCell.ContextActions>
+                                    <MenuItem Clicked="OnDelete" CommandParameter="{Binding .}" Text="Delete" IsDestructive="True" />
+                                </ViewCell.ContextActions>
 
                                 <Grid Padding="5" RowSpacing="1" ColumnSpacing="1">
 
@@ -49,11 +58,6 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-            </StackLayout>
-
-            <StackLayout VerticalOptions="End" Orientation="Horizontal" HeightRequest="70" BackgroundColor="LightSkyBlue" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}" RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.85}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.15}">
-                <Button x:Name="dismissButton" Margin="30,10,0,20" WidthRequest="100" HeightRequest="20" Text="Dismiss" Clicked="OnDismissButtonClicked" HorizontalOptions="StartAndExpand" BackgroundColor="White" />
-                <Button x:Name="saveButton" Margin="0,10,30,20" WidthRequest="100" HeightRequest="20" Text="Save" Clicked="OnSaveButtonClicked" BackgroundColor="White" />
             </StackLayout>
 
         </RelativeLayout>

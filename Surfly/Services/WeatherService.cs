@@ -18,7 +18,7 @@ namespace Surfly.Services
 
         public async Task<WeatherData> GetWeatherDataAsync(string uri)
         {
-            WeatherData weatherData = null; // Convert to WeatherData
+            WeatherData weatherData = null;
             try
             {
                 HttpResponseMessage response = await _client.GetAsync(uri);

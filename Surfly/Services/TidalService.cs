@@ -59,27 +59,24 @@ namespace Surfly.Services
             return stationsData;
         }
 
-        //public async Task<TidalEventsData[]> GetTidalEventsDataAsync(string uri)
-        //{
-        //    TidalEventsData[] tidalEventsData = null;
-        //    try
-        //    {
-        //        //_client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Subscription key", "Primary-654b");
-        //        HttpResponseMessage response = await _client.GetAsync(uri);
-        //        if (response.IsSuccessStatusCode)
-        //        {
-        //            string content = await response.Content.ReadAsStringAsync();
-        //            Debug.WriteLine("Tidal Events are: \t");
-        //            Debug.WriteLine(content);
-        //            tidalEventsData = JsonConvert.DeserializeObject<TidalEventsData[]>(content);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Debug.WriteLine("\tERROR {0}", ex.Message);
-        //    }
+        public async Task<TidalEventsData[]> GetTidalEventsDataAsync(string uri)
+        {
+            TidalEventsData[] tidalEventsData = null;
+            try
+            {
+                HttpResponseMessage response = await _client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    tidalEventsData = JsonConvert.DeserializeObject<TidalEventsData[]>(content);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("\tERROR {0}", ex.Message);
+            }
 
-        //    return tidalEventsData;
-        //}
+            return tidalEventsData;
+        }
     }
 }

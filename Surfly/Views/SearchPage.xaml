@@ -5,16 +5,23 @@
 
         <StackLayout>
 
-             <SearchBar Placeholder="Search items..."
-              CancelButtonColor="Black"
-              PlaceholderColor="Black"
-              TextColor="Blue"
-              HorizontalTextAlignment="Start"
-              FontSize="Medium"
-              FontAttributes="Italic"
-              TextChanged="OnTextChangedAsync"/>
+            <SearchBar Placeholder="Search items..." CancelButtonColor="Black" PlaceholderColor="Black" TextColor="Blue" HorizontalTextAlignment="Start" FontSize="Medium" FontAttributes="Italic" TextChanged="OnTextChangedAsync" />
 
-              <ListView ItemsSource="{Binding}" ItemSelected="OnItemSelected"/>
+            <Picker x:Name="picker" SelectedIndexChanged="OnPickerSelectedIndexChanged" Title="Select how many days you want to see..." TitleColor="Black" Margin="10,10,10,0">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>1</x:String>
+                        <x:String>2</x:String>
+                        <x:String>3</x:String>
+                        <x:String>4</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <ListView ItemsSource="{Binding}" ItemSelected="OnItemSelected" Margin="0,0,0,30"/>
+
+            <Button BackgroundColor="Black" TextColor="White" Text="Use My Location" Margin="10,0,10,30" Clicked="useMyLocationClicked">
+            </Button>
 
         </StackLayout>
     </ContentPage.Content>

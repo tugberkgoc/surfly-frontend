@@ -21,5 +21,22 @@ namespace Surfly.Models
 
         [JsonProperty("Filtered")]
         public bool Filtered { get; set; }
+
+        public string getTypeAndHeight()
+        {
+            string time = "";
+            int index = DateTime.LastIndexOf("T", System.StringComparison.Ordinal);
+            if (index > 0)
+                time = DateTime.Substring(index + 1, 8);
+
+            if (EventType == "LowWater")
+            {
+                return $"Low water at {time}";
+            }
+            else
+            {
+                return $"High water at {time}";
+            }
+        }
     }
 }

@@ -110,6 +110,24 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\open-weather-icons\03n%402x.png" />
+    <ImageAsset Include="Assets.xcassets\open-weather-icons\13n%402x.png" />
+    <ImageAsset Include="Assets.xcassets\open-weather-icons\10d%402x.png" />
+    <ImageAsset Include="Assets.xcassets\open-weather-icons\09d%402x.png" />
+    <ImageAsset Include="Assets.xcassets\open-weather-icons\02n%402x.png" />
+    <ImageAsset Include="Assets.xcassets\open-weather-icons\01d%402x.png" />
+    <ImageAsset Include="Assets.xcassets\open-weather-icons\11d%402x.png" />
+    <ImageAsset Include="Assets.xcassets\open-weather-icons\09n%402x.png" />
+    <ImageAsset Include="Assets.xcassets\open-weather-icons\10n%402x.png" />
+    <ImageAsset Include="Assets.xcassets\open-weather-icons\13d%402x.png" />
+    <ImageAsset Include="Assets.xcassets\open-weather-icons\03d%402x.png" />
+    <ImageAsset Include="Assets.xcassets\open-weather-icons\11n%402x.png" />
+    <ImageAsset Include="Assets.xcassets\open-weather-icons\01n%402x.png" />
+    <ImageAsset Include="Assets.xcassets\open-weather-icons\02d%402x.png" />
+    <ImageAsset Include="Assets.xcassets\open-weather-icons\50n%402x.png" />
+    <ImageAsset Include="Assets.xcassets\open-weather-icons\04n%402x.png" />
+    <ImageAsset Include="Assets.xcassets\open-weather-icons\04d%402x.png" />
+    <ImageAsset Include="Assets.xcassets\open-weather-icons\50d%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -132,5 +150,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets.xcassets\Search-Icon.imageset\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\01d%402x.png" />
   </ItemGroup>
 </Project>
