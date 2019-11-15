@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Surfly.Helpers;
 using Surfly.Models;
 using Surfly.Services;
@@ -11,17 +12,16 @@ namespace Surfly.Views
     public partial class SavedTidalAndWeathersPage : ContentPage
     {
         TidalAndWeatherService _tidalAndWeatherService;
-        private List<TidalAndWeather> tidalAndWeather { get; set; }
+        List<TidalAndWeather> empty { get; set; }
 
         public SavedTidalAndWeathersPage()
         {
             InitializeComponent();
-            tidalAndWeather = new List<TidalAndWeather>();
+            empty = new List<TidalAndWeather>();
+            tidalAndWeatherListView.ItemsSource = empty;
             _tidalAndWeatherService = new TidalAndWeatherService();
             UpdatePage();
-
-            // TODO:
-        }
+        
 
         async void OnLogoutButtonClicked(object sender, EventArgs e)
         {
@@ -43,7 +43,12 @@ namespace Surfly.Views
             }
         }
 
-        public async void UpdatePage()
+        void GetSavedData(object sender, EventArgs e)
+        {
+            UpdatePage();
+        }
+
+        async void UpdatePage()
         {
             List<TidalAndWeather> tidalAndWeathers = await _tidalAndWeatherService.GetSavedTidalAndWeather(GenerateGetTidalAndWeather(Constants.BackendAPIEndpoint));
             tidalAndWeatherListView.ItemsSource = tidalAndWeathers;

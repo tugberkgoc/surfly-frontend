@@ -46,14 +46,11 @@ namespace Surfly.Views
         async void OnItemSelected(object sender, EventArgs e)
         {
             ListView listView = (ListView)sender;
+            StationData stationData = (StationData)listView.SelectedItem;
 
-            if (listView.SelectedItem != null && howManyDays != "0")
+            if (listView.SelectedItem != null && howManyDays != "0" && stationData != null)
             {
-
-                StationData stationData = (StationData)listView.SelectedItem;
-
                 // TODO: Show user waiting
-
                 bool isAdded = false;
                 int tempDayCounter = 0;
                 int howMany3HoursinGivenDay = Int32.Parse(howManyDays) * 8;
@@ -75,13 +72,13 @@ namespace Surfly.Views
                             var obj = tidalAndWeathers.FirstOrDefault(x => x.Date.Substring(8, 2) == currentDate);
                             if (obj != null)
                             {
-                                //if (obj.MinTemperature > weatherData.WeatherList[i].Main.MinTemperature && weatherData.WeatherList[i].Main.MinTemperature < obj.Temperature) obj.MinTemperature = weatherData.WeatherList[i].Main.MinTemperature;
-                                //if (obj.MaxTemperature < weatherData.WeatherList[i].Main.MaxTemperature && weatherData.WeatherList[i].Main.MinTemperature > obj.Temperature) obj.MinTemperature = weatherData.WeatherList[i].Main.MaxTemperature;
+                                if (obj.MinTemperature > weatherData.WeatherList[i].Main.MinTemperature && weatherData.WeatherList[i].Main.MinTemperature < obj.Temperature) obj.MinTemperature = weatherData.WeatherList[i].Main.MinTemperature;
+                                if (obj.MaxTemperature < weatherData.WeatherList[i].Main.MaxTemperature && weatherData.WeatherList[i].Main.MaxTemperature > obj.Temperature) obj.MinTemperature = weatherData.WeatherList[i].Main.MaxTemperature;
                             } 
                         }
                         else
                         {
-                            if ((tempDayCounter + 1) > Int32.Parse(howManyDays) * 4) break;
+                            if (tempDayCounter + 1 > Int32.Parse(howManyDays) * 4) break;
 
                             tidalAndWeathers.Add(new TidalAndWeather()
                             {
@@ -107,24 +104,13 @@ namespace Surfly.Views
                             if (isAdded != false)
                             {
                                 int tempDate = Int32.Parse(currentDate) + 1;
-                                if (tempDate.ToString().Length == 1)
-                                {
-                                    currentDate = $"0{tempDate.ToString()}";
-                                }
-                                else
-                                {
-                                    currentDate = tempDate.ToString();
-                                }
+                                if (tempDate.ToString().Length == 1) currentDate = $"0{tempDate.ToString()}";
+                                else currentDate = tempDate.ToString();
                             }
-
                             isAdded = true;
                             tempDayCounter = tempDayCounter + 4;
                         }
                     }
-
-                    SavedTidalAndWeathersPage savedTidalAndWeathersPage = new SavedTidalAndWeathersPage();
-                    savedTidalAndWeathersPage.UpdatePage();
-
                     // TODO: HOW TO USER MODALS : await Navigation.PushModalAsync(new TidalDetailPage());
                     await Navigation.PushAsync(new TidalDetailPage(tidalAndWeathers));
                 }

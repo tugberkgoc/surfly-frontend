@@ -9,6 +9,6 @@ namespace Surfly.Helpers
         public static string UKTidalEndpoind = "https://admiraltyapi.azure-api.net/uktidalapi/api/V1";
         public static string UKTidalAPIKey = "654b9cd77f9046e485b55eb2f74d8124";
 
-        public static string BackendAPIEndpoint = "http://10.1.134.243:3030"; // https://surfly-backend.tugberkgoc.now.sh
+        public static string BackendAPIEndpoint = "https://surfly-backend.tugberkgoc.now.sh"; // http://192.168.0.108:3030
     }
 }

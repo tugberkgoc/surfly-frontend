@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Surfly.Helpers;
 using Surfly.Models;
 using Surfly.Services;
@@ -17,8 +16,8 @@ namespace Surfly.Views
         public TidalDetailPage(List<TidalAndWeather> tidalAndWeather)
         {
             InitializeComponent();
-            tidalAndWeatherListView.ItemsSource = tidalAndWeather;
             _tidalAndWeather = tidalAndWeather;
+            tidalAndWeatherListView.ItemsSource = tidalAndWeather;
             _tidalAndWeatherService = new TidalAndWeatherService();
         }
 
@@ -33,6 +32,7 @@ namespace Surfly.Views
             ResponseData responseData = await _tidalAndWeatherService.PostSaveTidalAndWeather(GeneratePostSaveTidalAndWeather(Constants.BackendAPIEndpoint), _tidalAndWeather);
             if (responseData.Status == "success")
             {
+                SavedTidalAndWeathersPage.GetSavedData();
                 await Navigation.PopAsync();
             } else
             {

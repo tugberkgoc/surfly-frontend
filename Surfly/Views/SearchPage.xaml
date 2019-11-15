@@ -1,8 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Surfly.Views.SearchPage">
     <ContentPage.Content>
-
-
         <StackLayout>
 
             <SearchBar Placeholder="Search items..." CancelButtonColor="Black" PlaceholderColor="Black" TextColor="Blue" HorizontalTextAlignment="Start" FontSize="Medium" FontAttributes="Italic" TextChanged="OnTextChangedAsync" />
@@ -18,10 +16,9 @@
                 </Picker.ItemsSource>
             </Picker>
 
-            <ListView ItemsSource="{Binding}" ItemSelected="OnItemSelected" Margin="0,0,0,30"/>
+            <ListView ItemsSource="{Binding}" ItemSelected="OnItemSelected" Margin="0,0,0,30" />
 
-            <Button BackgroundColor="Black" TextColor="White" Text="Use My Location" Margin="10,0,10,30" Clicked="useMyLocationClicked">
-            </Button>
+            <Button BackgroundColor="Black" TextColor="White" Text="Use My Location" Margin="10,0,10,30" Clicked="useMyLocationClicked"></Button>
 
         </StackLayout>
     </ContentPage.Content>
