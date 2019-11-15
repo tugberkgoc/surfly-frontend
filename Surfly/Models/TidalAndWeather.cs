@@ -12,6 +12,9 @@ namespace Surfly.Models
         [JsonProperty("City")]
         public string City { get; set; }
 
+        [JsonProperty("Icon")]
+        public string Icon { get; set; }
+
         [JsonProperty("Date")]
         public string Date { get; set; }
 

@@ -8,6 +8,7 @@ using Xamarin.Forms.Internals;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Linq;
+using Xamarin.Essentials;
 
 namespace Surfly.Views
 {
@@ -85,7 +86,8 @@ namespace Surfly.Views
                             tidalAndWeathers.Add(new TidalAndWeather()
                             {
                                 City = stationData.Properties.Name,
-                                Date = weatherData.WeatherList[i].DtTxt,
+                                Icon = weatherData.WeatherList[i].Weather[0].Icon,
+                                Date = weatherData.WeatherList[i].DtTxt.Substring(0, 10),
                                 Description = weatherData.WeatherList[i].Weather[0].Description,
                                 Temperature = weatherData.WeatherList[i].Main.Temperature,
                                 MinTemperature = weatherData.WeatherList[i].Main.MinTemperature,
@@ -120,12 +122,15 @@ namespace Surfly.Views
                         }
                     }
 
+                    SavedTidalAndWeathersPage savedTidalAndWeathersPage = new SavedTidalAndWeathersPage();
+                    savedTidalAndWeathersPage.UpdatePage();
+
                     // TODO: HOW TO USER MODALS : await Navigation.PushModalAsync(new TidalDetailPage());
                     await Navigation.PushAsync(new TidalDetailPage(tidalAndWeathers));
                 }
                 else
                 {
-                    // TODO:
+                    await DisplayAlert("Alert", "There is no tidal data for given location.", "OK");
                 }
             }
             else if (howManyDays == "0")
@@ -153,7 +158,32 @@ namespace Surfly.Views
             }
             else
             {
-                // TODO: Use Geolocation!!!
+                try
+                {
+                    var location = await Geolocation.GetLastKnownLocationAsync();
+
+                    if (location != null)
+                    {
+                        Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
+                        await DisplayAlert("Alert", $"Location: Latitude: {location.Latitude}, Longitude: {location.Longitude}", "OK");
+                    }
+                }
+                catch (FeatureNotSupportedException fnsEx)
+                {
+                    // Handle not supported on device exception
+                }
+                catch (FeatureNotEnabledException fneEx)
+                {
+                    // Handle not enabled on device exception
+                }
+                catch (PermissionException pEx)
+                {
+                    // Handle permission exception
+                }
+                catch (Exception ex)
+                {
+                    // Unable to get location
+                }
             }
         }
 
@@ -171,14 +201,13 @@ namespace Surfly.Views
         string GenerateRequestUriForStations(string endpoint, string searchBarText)
         {
             string requestUri = endpoint;
-            string location = searchBarText; // need to get from user
+            string location = searchBarText;
             requestUri += $"/Stations?name={location}";
             return requestUri;
         }
 
         string GenerateRequestUriForTidalEventsData(string endpoint, string id, string days)
         {
-            // Stations/0659/TidalEvents?duration=7
             string requestUri = endpoint;
             requestUri += $"/Stations/{id}/TidalEvents?duration={days}";
             return requestUri;

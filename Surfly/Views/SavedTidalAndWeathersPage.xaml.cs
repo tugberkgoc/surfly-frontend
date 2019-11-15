@@ -43,7 +43,7 @@ namespace Surfly.Views
             }
         }
 
-        async void UpdatePage()
+        public async void UpdatePage()
         {
             List<TidalAndWeather> tidalAndWeathers = await _tidalAndWeatherService.GetSavedTidalAndWeather(GenerateGetTidalAndWeather(Constants.BackendAPIEndpoint));
             tidalAndWeatherListView.ItemsSource = tidalAndWeathers;

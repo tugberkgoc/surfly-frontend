@@ -19,6 +19,8 @@ namespace Surfly.Views
 
         async void OnSignUpButtonClicked(object sender, EventArgs e)
         {
+            usernameEntry.Text = string.Empty;
+            passwordEntry.Text = string.Empty;
             await Navigation.PushAsync(new SignUpPage());
         }
 

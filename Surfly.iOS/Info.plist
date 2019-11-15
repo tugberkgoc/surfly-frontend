@@ -32,6 +32,8 @@
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
 	<string>Surfly</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string></string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 </dict>
