@@ -11,6 +11,8 @@ namespace Surfly.Views
 {
     public partial class SavedTidalAndWeathersPage : ContentPage
     {
+        public event EventHandler Appearing;
+
         TidalAndWeatherService _tidalAndWeatherService;
         List<TidalAndWeather> empty { get; set; }
 
@@ -21,7 +23,13 @@ namespace Surfly.Views
             tidalAndWeatherListView.ItemsSource = empty;
             _tidalAndWeatherService = new TidalAndWeatherService();
             UpdatePage();
-        
+        }
+
+        protected override void OnAppearing()
+        {
+            UpdatePage();
+        }
+
 
         async void OnLogoutButtonClicked(object sender, EventArgs e)
         {
@@ -41,11 +49,6 @@ namespace Surfly.Views
             {
                 UpdatePage();
             }
-        }
-
-        void GetSavedData(object sender, EventArgs e)
-        {
-            UpdatePage();
         }
 
         async void UpdatePage()

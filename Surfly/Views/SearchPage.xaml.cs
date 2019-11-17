@@ -74,32 +74,108 @@ namespace Surfly.Views
                             {
                                 if (obj.MinTemperature > weatherData.WeatherList[i].Main.MinTemperature && weatherData.WeatherList[i].Main.MinTemperature < obj.Temperature) obj.MinTemperature = weatherData.WeatherList[i].Main.MinTemperature;
                                 if (obj.MaxTemperature < weatherData.WeatherList[i].Main.MaxTemperature && weatherData.WeatherList[i].Main.MaxTemperature > obj.Temperature) obj.MinTemperature = weatherData.WeatherList[i].Main.MaxTemperature;
-                            } 
+                            }
                         }
                         else
                         {
                             if (tempDayCounter + 1 > Int32.Parse(howManyDays) * 4) break;
 
-                            tidalAndWeathers.Add(new TidalAndWeather()
+                            if (tidalEventsData.ElementAtOrDefault(tempDayCounter + 3) != null)
                             {
-                                City = stationData.Properties.Name,
-                                Icon = weatherData.WeatherList[i].Weather[0].Icon,
-                                Date = weatherData.WeatherList[i].DtTxt.Substring(0, 10),
-                                Description = weatherData.WeatherList[i].Weather[0].Description,
-                                Temperature = weatherData.WeatherList[i].Main.Temperature,
-                                MinTemperature = weatherData.WeatherList[i].Main.MinTemperature,
-                                MaxTemperature = weatherData.WeatherList[i].Main.MaxTemperature,
-                                WindSpeed = weatherData.WeatherList[i].Wind.WindSpeed,
-                                Humidity = weatherData.WeatherList[i].Main.Humidity,
-                                FirstWater = tidalEventsData[tempDayCounter].getTypeAndHeight(),
-                                FirstWaterHeight = tidalEventsData[tempDayCounter].Height.ToString("0.##"),
-                                SecondWater = tidalEventsData[tempDayCounter + 1].getTypeAndHeight(),
-                                SecondWaterHeight = tidalEventsData[tempDayCounter + 1].Height.ToString("0.##"),
-                                ThirdWater = tidalEventsData[tempDayCounter + 2].getTypeAndHeight(),
-                                ThirdWaterHeight = tidalEventsData[tempDayCounter + 2].Height.ToString("0.##"),
-                                FourthWater = tidalEventsData[tempDayCounter + 3].getTypeAndHeight(),
-                                FourthWaterHeight = tidalEventsData[tempDayCounter + 3].Height.ToString("0.##")
-                            });
+                                if (tidalEventsData[tempDayCounter + 3].DateTime.Substring(8, 2) == currentDate)
+                                {
+                                    tidalAndWeathers.Add(new TidalAndWeather()
+                                    {
+                                        City = stationData.Properties.Name,
+                                        Icon = weatherData.WeatherList[i].Weather[0].Icon,
+                                        Date = weatherData.WeatherList[i].DtTxt.Substring(0, 10),
+                                        Description = weatherData.WeatherList[i].Weather[0].Description,
+                                        Temperature = weatherData.WeatherList[i].Main.Temperature,
+                                        MinTemperature = weatherData.WeatherList[i].Main.MinTemperature,
+                                        MaxTemperature = weatherData.WeatherList[i].Main.MaxTemperature,
+                                        WindSpeed = weatherData.WeatherList[i].Wind.WindSpeed,
+                                        Humidity = weatherData.WeatherList[i].Main.Humidity,
+                                        FirstWater = tidalEventsData[tempDayCounter].getTypeAndHeight(),
+                                        FirstWaterHeight = tidalEventsData[tempDayCounter].Height.ToString("0.##"),
+                                        SecondWater = tidalEventsData[tempDayCounter + 1].getTypeAndHeight(),
+                                        SecondWaterHeight = tidalEventsData[tempDayCounter + 1].Height.ToString("0.##"),
+                                        ThirdWater = tidalEventsData[tempDayCounter + 2].getTypeAndHeight(),
+                                        ThirdWaterHeight = tidalEventsData[tempDayCounter + 2].Height.ToString("0.##"),
+                                        FourthWater = tidalEventsData[tempDayCounter + 3].getTypeAndHeight(),
+                                        FourthWaterHeight = tidalEventsData[tempDayCounter + 3].Height.ToString("0.##")
+                                    });
+                                    tempDayCounter = tempDayCounter + 4;
+                                }
+                            }
+                            else if (tidalEventsData.ElementAtOrDefault(tempDayCounter + 2) != null)
+                            {
+                                if (tidalEventsData[tempDayCounter + 2].DateTime.Substring(8, 2) == currentDate)
+                                {
+                                    tidalAndWeathers.Add(new TidalAndWeather()
+                                    {
+                                        City = stationData.Properties.Name,
+                                        Icon = weatherData.WeatherList[i].Weather[0].Icon,
+                                        Date = weatherData.WeatherList[i].DtTxt.Substring(0, 10),
+                                        Description = weatherData.WeatherList[i].Weather[0].Description,
+                                        Temperature = weatherData.WeatherList[i].Main.Temperature,
+                                        MinTemperature = weatherData.WeatherList[i].Main.MinTemperature,
+                                        MaxTemperature = weatherData.WeatherList[i].Main.MaxTemperature,
+                                        WindSpeed = weatherData.WeatherList[i].Wind.WindSpeed,
+                                        Humidity = weatherData.WeatherList[i].Main.Humidity,
+                                        FirstWater = tidalEventsData[tempDayCounter].getTypeAndHeight(),
+                                        FirstWaterHeight = tidalEventsData[tempDayCounter].Height.ToString("0.##"),
+                                        SecondWater = tidalEventsData[tempDayCounter + 1].getTypeAndHeight(),
+                                        SecondWaterHeight = tidalEventsData[tempDayCounter + 1].Height.ToString("0.##"),
+                                        ThirdWater = tidalEventsData[tempDayCounter + 2].getTypeAndHeight(),
+                                        ThirdWaterHeight = tidalEventsData[tempDayCounter + 2].Height.ToString("0.##"),
+                                    });
+                                    tempDayCounter = tempDayCounter + 3;
+                                }
+                            }
+                            else if (tidalEventsData.ElementAtOrDefault(tempDayCounter + 1) != null)
+                            {
+                                if (tidalEventsData[tempDayCounter + 1].DateTime.Substring(8, 2) == currentDate)
+                                {
+                                    tidalAndWeathers.Add(new TidalAndWeather()
+                                    {
+                                        City = stationData.Properties.Name,
+                                        Icon = weatherData.WeatherList[i].Weather[0].Icon,
+                                        Date = weatherData.WeatherList[i].DtTxt.Substring(0, 10),
+                                        Description = weatherData.WeatherList[i].Weather[0].Description,
+                                        Temperature = weatherData.WeatherList[i].Main.Temperature,
+                                        MinTemperature = weatherData.WeatherList[i].Main.MinTemperature,
+                                        MaxTemperature = weatherData.WeatherList[i].Main.MaxTemperature,
+                                        WindSpeed = weatherData.WeatherList[i].Wind.WindSpeed,
+                                        Humidity = weatherData.WeatherList[i].Main.Humidity,
+                                        FirstWater = tidalEventsData[tempDayCounter].getTypeAndHeight(),
+                                        FirstWaterHeight = tidalEventsData[tempDayCounter].Height.ToString("0.##"),
+                                        SecondWater = tidalEventsData[tempDayCounter + 1].getTypeAndHeight(),
+                                        SecondWaterHeight = tidalEventsData[tempDayCounter + 1].Height.ToString("0.##"),
+                                    });
+                                    tempDayCounter = tempDayCounter + 2;
+                                }
+                            }
+                            else if (tidalEventsData.ElementAtOrDefault(tempDayCounter) != null)
+                            {
+                                if (tidalEventsData[tempDayCounter].DateTime.Substring(8, 2) == currentDate)
+                                {
+                                    tidalAndWeathers.Add(new TidalAndWeather()
+                                    {
+                                        City = stationData.Properties.Name,
+                                        Icon = weatherData.WeatherList[i].Weather[0].Icon,
+                                        Date = weatherData.WeatherList[i].DtTxt.Substring(0, 10),
+                                        Description = weatherData.WeatherList[i].Weather[0].Description,
+                                        Temperature = weatherData.WeatherList[i].Main.Temperature,
+                                        MinTemperature = weatherData.WeatherList[i].Main.MinTemperature,
+                                        MaxTemperature = weatherData.WeatherList[i].Main.MaxTemperature,
+                                        WindSpeed = weatherData.WeatherList[i].Wind.WindSpeed,
+                                        Humidity = weatherData.WeatherList[i].Main.Humidity,
+                                        FirstWater = tidalEventsData[tempDayCounter].getTypeAndHeight(),
+                                        FirstWaterHeight = tidalEventsData[tempDayCounter].Height.ToString("0.##"),
+                                    });
+                                    tempDayCounter = tempDayCounter + 1;
+                                }
+                            }
 
                             if (isAdded != false)
                             {
@@ -108,7 +184,6 @@ namespace Surfly.Views
                                 else currentDate = tempDate.ToString();
                             }
                             isAdded = true;
-                            tempDayCounter = tempDayCounter + 4;
                         }
                     }
                     // TODO: HOW TO USER MODALS : await Navigation.PushModalAsync(new TidalDetailPage());

@@ -9,7 +9,6 @@ namespace Surfly.Views
 {
     public partial class TidalDetailPage : ContentPage
     {
-
         List<TidalAndWeather> _tidalAndWeather;
         TidalAndWeatherService _tidalAndWeatherService;
 
@@ -32,7 +31,6 @@ namespace Surfly.Views
             ResponseData responseData = await _tidalAndWeatherService.PostSaveTidalAndWeather(GeneratePostSaveTidalAndWeather(Constants.BackendAPIEndpoint), _tidalAndWeather);
             if (responseData.Status == "success")
             {
-                SavedTidalAndWeathersPage.GetSavedData();
                 await Navigation.PopAsync();
             } else
             {

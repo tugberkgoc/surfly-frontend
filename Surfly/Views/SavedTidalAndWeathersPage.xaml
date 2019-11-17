@@ -56,6 +56,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-                <!--<Button BackgroundColor="Black" TextColor="White" Text="Get Saved Data" Margin="10,0,10,30" Clicked="GetSavedData"></Button>-->
+
     </ContentPage.Content>
 </ContentPage>

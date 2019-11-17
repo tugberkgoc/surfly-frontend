@@ -3,7 +3,7 @@
     <ContentPage.Content>
         <StackLayout>
 
-            <SearchBar Placeholder="Search items..." CancelButtonColor="Black" PlaceholderColor="Black" TextColor="Blue" HorizontalTextAlignment="Start" FontSize="Medium" FontAttributes="Italic" TextChanged="OnTextChangedAsync" />
+            <SearchBar Placeholder="Search cities..." CancelButtonColor="Black" PlaceholderColor="Black" TextColor="Blue" HorizontalTextAlignment="Start" FontSize="Medium" FontAttributes="Italic" TextChanged="OnTextChangedAsync" />
 
             <Picker x:Name="picker" SelectedIndexChanged="OnPickerSelectedIndexChanged" Title="Select how many days you want to see..." TitleColor="Black" Margin="10,10,10,0">
                 <Picker.ItemsSource>
