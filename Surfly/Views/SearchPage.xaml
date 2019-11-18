@@ -5,7 +5,7 @@
 
             <SearchBar Placeholder="Search cities..." CancelButtonColor="Black" PlaceholderColor="Black" TextColor="Blue" HorizontalTextAlignment="Start" FontSize="Medium" FontAttributes="Italic" TextChanged="OnTextChangedAsync" />
 
-            <Picker x:Name="picker" SelectedIndexChanged="OnPickerSelectedIndexChanged" Title="Select how many days you want to see..." TitleColor="Black" Margin="10,10,10,0">
+            <Picker x:Name="picker" SelectedIndexChanged="OnPickerSelectedIndexChanged" Title="How Many Days" TitleColor="Black" Margin="10,10,10,0">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>1</x:String>
