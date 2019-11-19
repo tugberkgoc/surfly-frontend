@@ -73,7 +73,7 @@ namespace Surfly.Views
                             if (obj != null)
                             {
                                 if (obj.MinTemperature > weatherData.WeatherList[i].Main.MinTemperature && weatherData.WeatherList[i].Main.MinTemperature < obj.Temperature) obj.MinTemperature = weatherData.WeatherList[i].Main.MinTemperature;
-                                if (obj.MaxTemperature < weatherData.WeatherList[i].Main.MaxTemperature && weatherData.WeatherList[i].Main.MaxTemperature > obj.Temperature) obj.MinTemperature = weatherData.WeatherList[i].Main.MaxTemperature;
+                                if (obj.MaxTemperature < weatherData.WeatherList[i].Main.MaxTemperature && weatherData.WeatherList[i].Main.MaxTemperature > obj.Temperature) obj.MaxTemperature = weatherData.WeatherList[i].Main.MaxTemperature;
                             }
                         }
                         else
